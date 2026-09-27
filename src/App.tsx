@@ -47,56 +47,31 @@ const DEFAULT_FILTERS: FilterState = {
   years: [],
   fuels: [],
   transmissions: [],
-  minYear: 2005,
-  maxYear: 2028,
+  minYear: 2020,
+  maxYear: 2026,
   minPrice: 0,
-  maxPrice: 600000,
+  maxPrice: 300000,
 };
 
 const ALL_MAKES = [
-  'BMW',
-  'Cadillac',
-  'Toyota',
-  'GMC',
   'Mercedes-Benz',
-  'Land Rover',
-  'Jetour',
-  'Porsche',
+  'Audi',
+  'Volvo',
 ];
 
 const MAKE_MODELS_MAP: Record<string, string[]> = {
-  'Cadillac': ['Escalade-V'],
-  'BMW': ['M5 (727 HP)'],
-  'Toyota': ['Land Cruiser GX.R Twin Turbo', 'Land Cruiser VX Twin Turbo', 'Land Cruiser Prado VX'],
-  'GMC': ['Yukon Denali'],
-  'Mercedes-Benz': ['C 200 AMG Package', 'CLE 300 4MATIC', 'G 500 AMG Package', 'G 63 AMG Carbon Fiber Pack'],
-  'Land Rover': ['Range Rover Sport V8 Autobiography', 'Range Rover Sport SVR', 'Range Rover Sport V6 P400 Dynamic', 'Range Rover Vogue HSE V8', 'Range Rover Vogue P530 Autobiography', 'Defender 110 P400 HSE'],
-  'Jetour': ['T2 Travel+'],
-  'Porsche': ['Macan S'],
+  'Mercedes-Benz': ['G 63 AMG'],
+  'Audi': ['Q8 S-Line'],
+  'Volvo': ['XC60 T8 Recharge'],
 };
 
 const ALL_MODELS = [
-  'M5 (727 HP)',
-  'Escalade-V',
-  'Land Cruiser GX.R Twin Turbo',
-  'Land Cruiser VX Twin Turbo',
-  'Land Cruiser Prado VX',
-  'Yukon Denali',
-  'C 200 AMG Package',
-  'CLE 300 4MATIC',
-  'Range Rover Sport V8 Autobiography',
-  'Range Rover Sport SVR',
-  'Range Rover Sport V6 P400 Dynamic',
-  'Range Rover Vogue HSE V8',
-  'Range Rover Vogue P530 Autobiography',
-  'Defender 110 P400 HSE',
-  'G 500 AMG Package',
-  'G 63 AMG Carbon Fiber Pack',
-  'T2 Travel+',
-  'Macan S',
+  'G 63 AMG',
+  'Q8 S-Line',
+  'XC60 T8 Recharge',
 ];
 
-const ALL_YEARS = [2027, 2025, 2024, 2023, 2022, 2021, 2020, 2019, 2018, 2016, 2015];
+const ALL_YEARS = [2026, 2021, 2020];
 const ALL_FUELS = ['Petrol', 'Hybrid'];
 const ALL_TRANSMISSIONS = ['Automatic'];
 
@@ -121,402 +96,62 @@ type Car = {
 const cars: Car[] = [
   {
     id: 1,
-    name: 'BMW M5 2027 (727 HP)',
-    make: 'BMW',
-    model: 'M5',
-    year: 2027,
+    name: 'Mercedes-Benz G 63 AMG 2021',
+    make: 'Mercedes-Benz',
+    model: 'G 63 AMG',
+    year: 2021,
     price: 'Price on Request',
-    mileage: '4,000 km',
-    fuel: 'Hybrid',
+    mileage: 'Certified Pre-Owned',
+    fuel: 'Petrol',
     transmission: 'Automatic',
-    image: '/inventory/bmw-m5-2027/m5-1.jpg',
+    image: '/inventory/mercedes-g63-amg-2021/g63-1.jpg',
     images: [
-      '/inventory/bmw-m5-2027/m5-1.jpg',
-      '/inventory/bmw-m5-2027/m5-2.jpg',
-      '/inventory/bmw-m5-2027/m5-3.jpg',
-      '/inventory/bmw-m5-2027/m5-4.jpg',
-      '/inventory/bmw-m5-2027/m5-5.jpg'
+      '/inventory/mercedes-g63-amg-2021/g63-1.jpg',
+      '/inventory/mercedes-g63-amg-2021/g63-2.jpg',
+      '/inventory/mercedes-g63-amg-2021/g63-3.jpg',
+      '/inventory/mercedes-g63-amg-2021/g63-4.jpg',
+      '/inventory/mercedes-g63-amg-2021/g63-5.jpg'
     ],
-    tag: '727 HP • BASSOUL HENEINE • 4,000 KM • WARRANTY & MAINTENANCE',
-    description: 'Frozen Deep Grey • Merino Red Leather • 4,000 km • Bassoul Heneine source • 3 Years Warranty • 5 Years Free Maintenance • Carbon fiber front & rear attach • Rocker panels • Rear carbon diffuser • Exhaust system titanium • Interior carbon fiber • Black light alloy M wheels 20/21 • M compound red high gloss calipers • M seat belts • Head up display • 727 HP'
+    tag: 'G63 AMG 2021 • V8 BITURBO • ON MOTORS EXCLUSIVE',
+    description: '2021 Mercedes-AMG G 63 • Handcrafted 4.0L V8 Biturbo, AMG Night Package styling, exclusive diamond-stitched Nappa leather interior, Burmester Surround Sound system, AMG Ride Control suspension. Inspected, certified and ready for immediate delivery at ON Motors Saida.'
   },
   {
     id: 2,
-    name: 'Toyota Land Cruiser GX.R Twin Turbo 2022',
-    make: 'Toyota',
-    model: 'Land Cruiser GX.R Twin Turbo',
-    year: 2022,
+    name: 'Audi Q8 S-Line 2020',
+    make: 'Audi',
+    model: 'Q8 S-Line',
+    year: 2020,
     price: 'Price on Request',
-    mileage: '48,000 km',
+    mileage: 'Certified Pre-Owned',
     fuel: 'Petrol',
     transmission: 'Automatic',
-    image: '/inventory/toyota-landcruiser-gxr-2022/lc-1.jpg',
+    image: '/inventory/audi-q8-sline-2020/q8-1.jpg',
     images: [
-      '/inventory/toyota-landcruiser-gxr-2022/lc-1.jpg',
-      '/inventory/toyota-landcruiser-gxr-2022/lc-2.jpg',
-      '/inventory/toyota-landcruiser-gxr-2022/lc-3.jpg',
-      '/inventory/toyota-landcruiser-gxr-2022/lc-4.jpg',
-      '/inventory/toyota-landcruiser-gxr-2022/lc-5.jpg'
+      '/inventory/audi-q8-sline-2020/q8-1.jpg',
+      '/inventory/audi-q8-sline-2020/q8-2.jpg',
+      '/inventory/audi-q8-sline-2020/q8-3.jpg'
     ],
-    tag: 'GX.R TWIN TURBO • COMPANY SOURCE • 48,000 KM • LIKE NEW',
-    description: 'GX.R Twin Turbo • Black / Black • 48,000 km • Company source • Like new'
+    tag: 'Q8 S-LINE 2020 • QUATTRO AWD • LUXURY SPORT SUV',
+    description: '2020 Audi Q8 S-Line • Legendary Quattro all-wheel drive, dual touchscreen MMI touch response, Valcona leather sport seats, panoramic glass roof, dynamic Matrix LED lighting, full digital virtual cockpit. Certified inspection and warranty included.'
   },
   {
     id: 3,
-    name: 'GMC Yukon DENALI 2021',
-    make: 'GMC',
-    model: 'Yukon Denali',
-    year: 2021,
+    name: 'Volvo XC60 T8 Recharge 2026',
+    make: 'Volvo',
+    model: 'XC60 T8 Recharge',
+    year: 2026,
     price: 'Price on Request',
-    mileage: '70,000 km',
-    fuel: 'Petrol',
+    mileage: 'Brand New (0 km)',
+    fuel: 'Hybrid',
     transmission: 'Automatic',
-    image: '/inventory/gmc-yukon-denali-2021/yukon-1.jpg',
+    image: '/inventory/volvo-xc60-t8-2026/xc60-1.jpg',
     images: [
-      '/inventory/gmc-yukon-denali-2021/yukon-1.jpg',
-      '/inventory/gmc-yukon-denali-2021/yukon-2.jpg',
-      '/inventory/gmc-yukon-denali-2021/yukon-3.jpg',
-      '/inventory/gmc-yukon-denali-2021/yukon-4.jpg',
-      '/inventory/gmc-yukon-denali-2021/yukon-5.jpg'
+      '/inventory/volvo-xc60-t8-2026/xc60-1.jpg',
+      '/inventory/volvo-xc60-t8-2026/xc60-2.jpg',
+      '/inventory/volvo-xc60-t8-2026/xc60-3.jpg'
     ],
-    tag: 'DENALI • COMPANY SOURCE • 70,000 KM • LIKE NEW',
-    description: 'Yukon DENALI • Black / Black • Company source • 70,000 km • Like new'
-  },
-  {
-    id: 4,
-    name: 'Mercedes-Benz CLE 300 4-MATIC Coupé 2024',
-    make: 'Mercedes-Benz',
-    model: 'CLE 300 4MATIC',
-    year: 2024,
-    price: 'Price on Request',
-    mileage: '0 km',
-    fuel: 'Petrol',
-    transmission: 'Automatic',
-    image: '/inventory/mercedes-cle300-2024/cle-1.jpg',
-    images: [
-      '/inventory/mercedes-cle300-2024/cle-1.jpg',
-      '/inventory/mercedes-cle300-2024/cle-2.jpg',
-      '/inventory/mercedes-cle300-2024/cle-3.jpg',
-      '/inventory/mercedes-cle300-2024/cle-4.jpg',
-      '/inventory/mercedes-cle300-2024/cle-5.jpg'
-    ],
-    tag: 'CLE 300 4-MATIC • 0 KM • AMG PACKAGE',
-    description: 'CLE 300 4-MATIC • Gray / Black • 0 km • AMG package'
-  },
-  {
-    id: 5,
-    name: 'Range Rover Sport V6 P400 Dynamic 2025',
-    make: 'Land Rover',
-    model: 'Range Rover Sport V6 P400 Dynamic',
-    year: 2025,
-    price: 'Price on Request',
-    mileage: '0 km',
-    fuel: 'Petrol',
-    transmission: 'Automatic',
-    image: '/inventory/range-rover-sport-dynamic-2025/rrs-1.jpg',
-    images: [
-      '/inventory/range-rover-sport-dynamic-2025/rrs-1.jpg',
-      '/inventory/range-rover-sport-dynamic-2025/rrs-2.jpg',
-      '/inventory/range-rover-sport-dynamic-2025/rrs-3.jpg',
-      '/inventory/range-rover-sport-dynamic-2025/rrs-4.jpg',
-      '/inventory/range-rover-sport-dynamic-2025/rrs-5.jpg'
-    ],
-    tag: 'V6 P400 DYNAMIC • 0 KM • FULLY LOADED',
-    description: 'Range Rover Sport 2025 • V6 P400 Dynamic • Black / Black • 0 km • Fully loaded'
-  },
-  {
-    id: 6,
-    name: 'Range Rover Vogue HSE V8 2016',
-    make: 'Land Rover',
-    model: 'Range Rover Vogue HSE V8',
-    year: 2016,
-    price: 'Price on Request',
-    mileage: '32,000 km only',
-    fuel: 'Petrol',
-    transmission: 'Automatic',
-    image: '/inventory/range-rover-vogue-hse-v8-2016/vogue-1.jpg',
-    images: [
-      '/inventory/range-rover-vogue-hse-v8-2016/vogue-1.jpg',
-      '/inventory/range-rover-vogue-hse-v8-2016/vogue-2.jpg',
-      '/inventory/range-rover-vogue-hse-v8-2016/vogue-3.jpg',
-      '/inventory/range-rover-vogue-hse-v8-2016/vogue-4.jpg',
-      '/inventory/range-rover-vogue-hse-v8-2016/vogue-5.jpg'
-    ],
-    tag: 'HSE V8 • COMPANY SOURCE • 32,000 KM ONLY • 100% ORIGINAL PAINT',
-    description: 'Range Rover Vogue 2016 • HSE V8 • 32,000 km only • Company source • 100% original factory paint'
-  },
-  {
-    id: 7,
-    name: 'Mercedes-Benz G 500 AMG Package 2019',
-    make: 'Mercedes-Benz',
-    model: 'G 500',
-    year: 2019,
-    price: 'Price on Request',
-    mileage: '25,000 km only',
-    fuel: 'Petrol',
-    transmission: 'Automatic',
-    image: '/inventory/mercedes-g500-2019/g500-1.jpg',
-    images: [
-      '/inventory/mercedes-g500-2019/g500-1.jpg',
-      '/inventory/mercedes-g500-2019/g500-2.jpg',
-      '/inventory/mercedes-g500-2019/g500-3.jpg',
-      '/inventory/mercedes-g500-2019/g500-4.jpg',
-      '/inventory/mercedes-g500-2019/g500-5.jpg'
-    ],
-    tag: 'AMG PACKAGE • TGF SOURCE • 25,000 KM ONLY • 100% ORIGINAL PAINT',
-    description: 'Mercedes-Benz G 500 2019 • 25,000 km only • TGF source • AMG package • All services done at TGF • Black / 2 tone interior • 100% original paint'
-  },
-  {
-    id: 8,
-    name: 'Mercedes-AMG G 63 Carbon Fiber Pack 2025',
-    make: 'Mercedes-Benz',
-    model: 'G 63 AMG Carbon Fiber Pack',
-    year: 2025,
-    price: 'Price on Request',
-    mileage: '4,000 km',
-    fuel: 'Petrol',
-    transmission: 'Automatic',
-    image: '/inventory/mercedes-g63-amg-2025/g63-1.jpg',
-    images: [
-      '/inventory/mercedes-g63-amg-2025/g63-1.jpg',
-      '/inventory/mercedes-g63-amg-2025/g63-2.jpg',
-      '/inventory/mercedes-g63-amg-2025/g63-3.jpg',
-      '/inventory/mercedes-g63-amg-2025/g63-4.jpg',
-      '/inventory/mercedes-g63-amg-2025/g63-5.jpg'
-    ],
-    tag: 'CARBON FIBER PACK • 4,000 KM 🇩🇪 • DOUBLE NIGHT PKG • FULLY LOADED',
-    description: 'Mercedes-AMG G 63 2025 • Carbon fiber pack • Nardo gray / Black • 4,000 km 🇩🇪 • Double night package • Performance package • Keyless entry • Red brake calipers • 22” rims • Rear entertainment (DVDs) • 360 degree camera • Fully loaded'
-  },
-  {
-    id: 9,
-    name: 'Jetour T2 Travel+ 2025',
-    make: 'Jetour',
-    model: 'T2 Travel Plus',
-    year: 2025,
-    price: 'Price on Request',
-    mileage: '0 km',
-    fuel: 'Petrol',
-    transmission: 'Automatic',
-    image: '/inventory/jetour-t2-travel-plus-2025/t2-1.jpg',
-    images: [
-      '/inventory/jetour-t2-travel-plus-2025/t2-1.jpg',
-      '/inventory/jetour-t2-travel-plus-2025/t2-2.jpg',
-      '/inventory/jetour-t2-travel-plus-2025/t2-3.jpg',
-      '/inventory/jetour-t2-travel-plus-2025/t2-4.jpg',
-      '/inventory/jetour-t2-travel-plus-2025/t2-5.jpg'
-    ],
-    tag: 'TRAVEL+ • 0 KM • FULLY LOADED',
-    description: 'Jetour T2 Travel+ 2025 • Black / Black • 0 km • Fully loaded'
-  },
-  {
-    id: 10,
-    name: 'Range Rover Vogue P530 Autobiography 2024',
-    make: 'Land Rover',
-    model: 'Range Rover Vogue P530 Autobiography',
-    year: 2024,
-    price: 'Price on Request',
-    mileage: '11,000 km only',
-    fuel: 'Petrol',
-    transmission: 'Automatic',
-    image: '/inventory/range-rover-vogue-p530-autobiography-2024/p530-1.jpg',
-    images: [
-      '/inventory/range-rover-vogue-p530-autobiography-2024/p530-1.jpg',
-      '/inventory/range-rover-vogue-p530-autobiography-2024/p530-2.jpg',
-      '/inventory/range-rover-vogue-p530-autobiography-2024/p530-3.jpg',
-      '/inventory/range-rover-vogue-p530-autobiography-2024/p530-4.jpg',
-      '/inventory/range-rover-vogue-p530-autobiography-2024/p530-5.jpg'
-    ],
-    tag: 'P530 AUTOBIOGRAPHY • TEWTEL SOURCE • 11,000 KM ONLY • WARRANTY TILL 2029',
-    description: 'Range Rover Vogue 2024 • P530 Autobiography • 11,000 km only • Tewtel source • Under warranty till 2029'
-  },
-  {
-    id: 11,
-    name: 'Land Rover Defender 110 P400 HSE 2020',
-    make: 'Land Rover',
-    model: 'Defender 110 P400 HSE',
-    year: 2020,
-    price: 'Price on Request',
-    mileage: '61,000 miles',
-    fuel: 'Petrol',
-    transmission: 'Automatic',
-    image: '/inventory/land-rover-defender-110-2020/def-1.jpg',
-    images: [
-      '/inventory/land-rover-defender-110-2020/def-1.jpg',
-      '/inventory/land-rover-defender-110-2020/def-2.jpg',
-      '/inventory/land-rover-defender-110-2020/def-3.jpg',
-      '/inventory/land-rover-defender-110-2020/def-4.jpg',
-      '/inventory/land-rover-defender-110-2020/def-5.jpg'
-    ],
-    tag: 'P400 HSE • 7 SEATS • MERIDIAN • 5 CAMERAS • CLEAN CARFAX',
-    description: 'Land Rover Defender 110 2020 • P400 HSE • 61,000 miles • 7 seats • Head up display • 5 cameras • MERIDIAN surround sound system • Cooling box • Panoramic sunroof • Clean Carfax • Fully loaded'
-  },
-  {
-    id: 12,
-    name: 'Porsche Macan S 2015',
-    make: 'Porsche',
-    model: 'Macan S',
-    year: 2015,
-    price: 'Price on Request',
-    mileage: '100,000 km',
-    fuel: 'Petrol',
-    transmission: 'Automatic',
-    image: '/inventory/porsche-macan-s-2015/macan-1.jpg',
-    images: [
-      '/inventory/porsche-macan-s-2015/macan-1.jpg',
-      '/inventory/porsche-macan-s-2015/macan-2.jpg',
-      '/inventory/porsche-macan-s-2015/macan-3.jpg',
-      '/inventory/porsche-macan-s-2015/macan-4.jpg',
-      '/inventory/porsche-macan-s-2015/macan-5.jpg'
-    ],
-    tag: 'PORSCHE CENTER LEBANON SERVICES • 100,000 KM • SHOWROOM CONDITION',
-    description: 'Porsche Macan S 2015 • Black / Red • 100,000 km • All services done at Porsche Center Lebanon • Like new showroom condition'
-  },
-  {
-    id: 13,
-    name: 'Toyota Land Cruiser VX Twin Turbo 2022',
-    make: 'Toyota',
-    model: 'Land Cruiser VX Twin Turbo',
-    year: 2022,
-    price: 'Price on Request',
-    mileage: '27,000 km only',
-    fuel: 'Petrol',
-    transmission: 'Automatic',
-    image: '/inventory/toyota-landcruiser-vx-2022/lc-vx-1.jpg',
-    images: [
-      '/inventory/toyota-landcruiser-vx-2022/lc-vx-1.jpg',
-      '/inventory/toyota-landcruiser-vx-2022/lc-vx-2.jpg',
-      '/inventory/toyota-landcruiser-vx-2022/lc-vx-3.jpg',
-      '/inventory/toyota-landcruiser-vx-2022/lc-vx-4.jpg',
-      '/inventory/toyota-landcruiser-vx-2022/lc-vx-5.jpg'
-    ],
-    tag: 'VX TWIN TURBO • BUMC SOURCE • 27,000 KM ONLY • SHOWROOM CONDITION',
-    description: 'Toyota Land Cruiser 2022 VX • Twin turbo • Black / Black • 27,000 km only • BUMC source • Showroom condition'
-  },
-  {
-    id: 14,
-    name: 'Toyota Land Cruiser Prado 2022',
-    make: 'Toyota',
-    model: 'Land Cruiser Prado VX',
-    year: 2022,
-    price: 'Price on Request',
-    mileage: '58,000 km only',
-    fuel: 'Petrol',
-    transmission: 'Automatic',
-    image: '/inventory/toyota-prado-vx-2022/prado-1.jpg',
-    images: [
-      '/inventory/toyota-prado-vx-2022/prado-1.jpg',
-      '/inventory/toyota-prado-vx-2022/prado-2.jpg',
-      '/inventory/toyota-prado-vx-2022/prado-3.jpg',
-      '/inventory/toyota-prado-vx-2022/prado-4.jpg',
-      '/inventory/toyota-prado-vx-2022/prado-5.jpg'
-    ],
-    tag: 'COMPANY SOURCE • 58,000 KM ONLY • BLACK / BLACK • LIKE NEW',
-    description: 'Toyota Prado 2022 • Black / Black • Company source • 58,000 km only • Like new'
-  },
-  {
-    id: 15,
-    name: 'Range Rover Sport SVR 2015',
-    make: 'Land Rover',
-    model: 'Range Rover Sport SVR',
-    year: 2015,
-    price: 'Price on Request',
-    mileage: '40,000 miles',
-    fuel: 'Petrol',
-    transmission: 'Automatic',
-    image: '/inventory/range-rover-sport-svr-2015/svr-1.jpg',
-    images: [
-      '/inventory/range-rover-sport-svr-2015/svr-1.jpg',
-      '/inventory/range-rover-sport-svr-2015/svr-2.jpg',
-      '/inventory/range-rover-sport-svr-2015/svr-3.jpg',
-      '/inventory/range-rover-sport-svr-2015/svr-4.jpg',
-      '/inventory/range-rover-sport-svr-2015/svr-5.jpg'
-    ],
-    tag: 'TRUE MASTERPIECE • INCREDIBLY RARE 💫💫 • 40,000 MILES • ORIGINAL PAINT',
-    description: 'Range Rover SVR 2015 • True Masterpiece • Incredibly Rare 💫💫 • 40,000 miles • Original factory paint • Showroom condition'
-  },
-  {
-    id: 16,
-    name: 'Range Rover Sport V8 Autobiography 2018',
-    make: 'Land Rover',
-    model: 'Range Rover Sport V8 Autobiography',
-    year: 2018,
-    price: 'Price on Request',
-    mileage: '59,000 miles only',
-    fuel: 'Petrol',
-    transmission: 'Automatic',
-    image: '/inventory/range-rover-sport-v8-autobiography-2018/rrs-auto-1.jpg',
-    images: [
-      '/inventory/range-rover-sport-v8-autobiography-2018/rrs-auto-1.jpg',
-      '/inventory/range-rover-sport-v8-autobiography-2018/rrs-auto-2.jpg',
-      '/inventory/range-rover-sport-v8-autobiography-2018/rrs-auto-3.jpg',
-      '/inventory/range-rover-sport-v8-autobiography-2018/rrs-auto-4.jpg',
-      '/inventory/range-rover-sport-v8-autobiography-2018/rrs-auto-5.jpg'
-    ],
-    tag: 'V8 AUTOBIOGRAPHY • 59,000 MILES • ORIGINAL PAINT • FULLY LOADED',
-    description: 'Range Rover Sport 2018 V8 Autobiography • 59,000 miles only • White / Red • Original factory paint • Fully loaded • 22” Rims • Carbon fiber interior • Head-up display • 360 degree surround view • Soft doors • MERIDIAN sound system • Heating Seats • Cooling box and much more'
-  },
-  {
-    id: 17,
-    name: 'Cadillac Escalade-V 2023',
-    make: 'Cadillac',
-    model: 'Escalade-V',
-    year: 2023,
-    price: 'Price on Request',
-    mileage: '27,000 km',
-    fuel: 'Petrol',
-    transmission: 'Automatic',
-    image: '/inventory/cadillac-escalade-v-2023/escalade-1.jpg',
-    images: [
-      '/inventory/cadillac-escalade-v-2023/escalade-1.jpg',
-      '/inventory/cadillac-escalade-v-2023/escalade-2.jpg',
-      '/inventory/cadillac-escalade-v-2023/escalade-3.jpg',
-      '/inventory/cadillac-escalade-v-2023/escalade-4.jpg',
-      '/inventory/cadillac-escalade-v-2023/escalade-5.jpg'
-    ],
-    tag: 'ESCALADE V • COMPANY SOURCE • 27,000 KM • WARRANTY TILL 2028',
-    description: '2023 Escalade V • Black / Dark Auburn • 27,000 km • Company source • Warranty till 2028'
-  },
-  {
-    id: 18,
-    name: 'Toyota Land Cruiser Prado VX 2019',
-    make: 'Toyota',
-    model: 'Land Cruiser Prado VX',
-    year: 2019,
-    price: 'Price on Request',
-    mileage: 'Contact Showroom',
-    fuel: 'Petrol',
-    transmission: 'Automatic',
-    image: '/inventory/toyota-prado-vx-2019/prado-1.jpg',
-    images: [
-      '/inventory/toyota-prado-vx-2019/prado-1.jpg',
-      '/inventory/toyota-prado-vx-2019/prado-2.jpg',
-      '/inventory/toyota-prado-vx-2019/prado-3.jpg',
-      '/inventory/toyota-prado-vx-2019/prado-4.jpg',
-      '/inventory/toyota-prado-vx-2019/prado-5.jpg'
-    ],
-    tag: 'PRADO 2019 VX • COMPANY SOURCE • BLACK / BLACK',
-    description: 'Toyota Prado 2019 VX • Black / Black • Company source'
-  },
-  {
-    id: 19,
-    name: 'Mercedes-Benz C 200 AMG Package 2022',
-    make: 'Mercedes-Benz',
-    model: 'C 200 AMG Package',
-    year: 2022,
-    price: 'Price on Request',
-    mileage: '2,500 km only',
-    fuel: 'Petrol',
-    transmission: 'Automatic',
-    image: '/inventory/mercedes-c200-amg-2022/c200-1.jpg',
-    images: [
-      '/inventory/mercedes-c200-amg-2022/c200-1.jpg',
-      '/inventory/mercedes-c200-amg-2022/c200-2.jpg',
-      '/inventory/mercedes-c200-amg-2022/c200-3.jpg',
-      '/inventory/mercedes-c200-amg-2022/c200-4.jpg',
-      '/inventory/mercedes-c200-amg-2022/c200-5.jpg'
-    ],
-    tag: 'C200 AMG PACKAGE • TGF SOURCE • 2,500 KM ONLY • WHITE / BLACK',
-    description: '2022 C200 AMG Package • White / Black • TGF source • 2,500 km only'
+    tag: 'XC60 T8 2026 • PLUG-IN HYBRID • BRAND NEW 0 KM',
+    description: '2026 Volvo XC60 T8 Recharge • High performance plug-in hybrid eAWD powertrain, Scandinavian minimalist luxury interior with genuine driftwood trim and Orrefors crystal gear shifter, Google built-in ecosystem, 360-degree surround view camera, brand new showroom delivery.'
   }
 ];
 
@@ -971,37 +606,29 @@ function HomePage({
           <p className="home-section-eyebrow">EXPLORE BY CATEGORY</p>
           <h2 className="home-section-title">Browse Collections</h2>
         </div>
-        <div className="category-grid">
+        <div className="category-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))' }}>
           <div className="category-card" onClick={() => onNavigate('inventory')}>
-            <img src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&w=900&q=80" alt="Exotics & Supercars" loading="lazy" decoding="async" />
+            <img src="/inventory/mercedes-g63-amg-2021/g63-1.jpg" alt="Mercedes-AMG G 63" loading="lazy" decoding="async" />
             <div className="category-overlay">
-              <h3>EXOTICS & SUPERCARS</h3>
-              <p>Ferrari, Porsche GT3 RS, McLaren</p>
-              <span className="category-cta">BROWSE SUPERCARS <ArrowRight size={13} /></span>
+              <h3>MERCEDES-AMG G 63</h3>
+              <p>2021 V8 Biturbo • ON Motors Exclusive</p>
+              <span className="category-cta">VIEW G 63 AMG <ArrowRight size={13} /></span>
             </div>
           </div>
           <div className="category-card" onClick={() => onNavigate('inventory')}>
-            <img src="https://images.unsplash.com/photo-1520050206274-a1ae44613e6d?auto=format&fit=crop&w=900&q=80" alt="Luxury SUVs & 4x4" loading="lazy" decoding="async" />
+            <img src="/inventory/audi-q8-sline-2020/q8-1.jpg" alt="Audi Q8 S-Line" loading="lazy" decoding="async" />
             <div className="category-overlay">
-              <h3>LUXURY SUVS & 4X4</h3>
-              <p>AMG G 63, Urus Performante, Range Rover SV</p>
-              <span className="category-cta">BROWSE SUVS <ArrowRight size={13} /></span>
+              <h3>AUDI Q8 S-LINE</h3>
+              <p>2020 Quattro AWD • Luxury Sport SUV</p>
+              <span className="category-cta">VIEW AUDI Q8 <ArrowRight size={13} /></span>
             </div>
           </div>
           <div className="category-card" onClick={() => onNavigate('inventory')}>
-            <img src="https://images.unsplash.com/photo-1631295868223-63265b40d9e4?auto=format&fit=crop&w=900&q=80" alt="Grand Tourers & Bespoke" loading="lazy" decoding="async" />
+            <img src="/inventory/volvo-xc60-t8-2026/xc60-1.jpg" alt="Volvo XC60 T8 Recharge" loading="lazy" decoding="async" />
             <div className="category-overlay">
-              <h3>GRAND TOURERS & BESPOKE</h3>
-              <p>Rolls-Royce Ghost, Bentley Azure, DB12</p>
-              <span className="category-cta">BROWSE GRAND TOURERS <ArrowRight size={13} /></span>
-            </div>
-          </div>
-          <div className="category-card" onClick={() => onNavigate('inventory')}>
-            <img src="https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?auto=format&fit=crop&w=900&q=80" alt="Performance & Sport" loading="lazy" decoding="async" />
-            <div className="category-overlay">
-              <h3>PERFORMANCE & SPORT</h3>
-              <p>BMW M4 Comp, Audi RS6 Avant, AMG GT 63 S</p>
-              <span className="category-cta">BROWSE PERFORMANCE <ArrowRight size={13} /></span>
+              <h3>VOLVO XC60 T8</h3>
+              <p>2026 Plug-in Hybrid • Brand New 0 km</p>
+              <span className="category-cta">VIEW VOLVO XC60 <ArrowRight size={13} /></span>
             </div>
           </div>
         </div>
