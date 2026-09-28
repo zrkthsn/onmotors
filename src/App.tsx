@@ -135,6 +135,27 @@ const cars: Car[] = [
     ],
     tag: '2026 • T8 RECHARGE • PLUG-IN HYBRID • BLACK EDITION',
     description: "2026 Volvo XC60 T8 Recharge • Black Edition with Onyx Black exterior, high-gloss black badging, and 21-inch gloss black sport wheels. Powered by Volvo's advanced T8 plug-in hybrid eAWD powertrain combining petrol turbo with electric power. Features Orrefors crystal gear selector, Bowers & Wilkins premium sound system, Google built-in infotainment, tailored sport leather seats, and ON MOTORS showroom delivery."
+  },
+  {
+    id: 4,
+    name: 'Mercedes-Benz GLC 300 Coupe 4MATIC 2018',
+    make: 'Mercedes-Benz',
+    model: 'GLC 300 Coupe',
+    year: 2018,
+    price: 'Price on Request',
+    mileage: 'Certified Pre-Owned',
+    fuel: 'Petrol',
+    transmission: 'Automatic',
+    image: '/inventory/mercedes-glc-coupe-2018/glc-1.jpg',
+    images: [
+      '/inventory/mercedes-glc-coupe-2018/glc-1.jpg',
+      '/inventory/mercedes-glc-coupe-2018/glc-2.jpg',
+      '/inventory/mercedes-glc-coupe-2018/glc-3.jpg',
+      '/inventory/mercedes-glc-coupe-2018/glc-4.jpg',
+      '/inventory/mercedes-glc-coupe-2018/glc-5.jpg',
+    ],
+    tag: '2018 • GLC 300 COUPE • 4MATIC AWD • TWO-TONE RED/BLACK',
+    description: "2018 Mercedes-Benz GLC 300 Coupe 4MATIC • Finished in Polar White with diamond radiator grille and 20-inch multi-spoke AMG alloy wheels. Powered by a 2.0L turbocharged engine paired with 9G-TRONIC transmission and 4MATIC all-wheel drive. Features exclusive two-tone Cranberry Red and Black leather sport interior, open-pore dark wood trim, Burmester surround sound, electric glass sunroof, running boards, and full ON MOTORS showroom certification."
   }
 ];
 
