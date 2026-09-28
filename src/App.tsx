@@ -93,6 +93,27 @@ const cars: Car[] = [
     ],
     tag: '2020 • S-LINE • QUATTRO AWD • 26K MILES',
     description: "2020 Audi Q8 S-Line • Finished in Glacier White with black optics package and sport alloy wheels. Powered by Audi's turbocharged V6 with legendary Quattro all-wheel drive. Features dual MMI touch response screens, full digital virtual cockpit, heated sport seats, panoramic glass roof, dynamic Matrix LED lighting, and ON MOTORS showroom certification."
+  },
+  {
+    id: 2,
+    name: 'Mercedes-Benz G 63 AMG 2021',
+    make: 'Mercedes-Benz',
+    model: 'G 63 AMG',
+    year: 2021,
+    price: 'Price on Request',
+    mileage: 'Certified Pre-Owned',
+    fuel: 'Petrol',
+    transmission: 'Automatic',
+    image: '/inventory/mercedes-g63-amg-2021/g63-1.jpg',
+    images: [
+      '/inventory/mercedes-g63-amg-2021/g63-1.jpg',
+      '/inventory/mercedes-g63-amg-2021/g63-2.jpg',
+      '/inventory/mercedes-g63-amg-2021/g63-3.jpg',
+      '/inventory/mercedes-g63-amg-2021/g63-4.jpg',
+      '/inventory/mercedes-g63-amg-2021/g63-5.jpg',
+    ],
+    tag: '2021 • G 63 AMG • 4.0L V8 BITURBO • NIGHT PACKAGE',
+    description: "2021 Mercedes-AMG G 63 • Finished in Obsidian Black Metallic with AMG Night Package styling, 22-inch forged cross-spoke wheels, and Panamericana grille. Powered by a handcrafted 4.0L V8 Biturbo producing 577 hp. Features AMG carbon-fiber performance steering wheel, wide dual digital widescreen cockpit, Burmester surround sound, ambient lighting, side-exit sport exhaust, and full ON MOTORS showroom certification."
   }
 ];
 
