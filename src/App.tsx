@@ -163,8 +163,12 @@ const onJournalPosts = [
 
 function Logo({ onNavigate }: { onNavigate: (p: Page) => void }) {
   return (
-    <div className="logo" onClick={() => onNavigate('home')}>
-      <span>ON MOTORS<br /><small>SAIDA • LEBANON</small></span>
+    <div className="logo brand-logo-wrap" onClick={() => onNavigate('home')} role="button" tabIndex={0} title="ON MOTORS">
+      <img
+        src="/on-motors-logo-transparent.png"
+        alt="ON MOTORS"
+        className="brand-logo-img"
+      />
     </div>
   );
 }
@@ -466,23 +470,19 @@ function HomePage({
         </div>
 
         <div className="hero-content">
-          {/* Desktop Hero Emblem Graphic */}
+          {/* Hero Emblem Graphic */}
           <div className="hero-desktop-emblem">
             <img
-              src="/on-motors-hero.jpg"
-              alt="ON Motors Lebanon"
+              src="/on-motors-logo-transparent.png"
+              alt="ON MOTORS"
               className="hero-desktop-emblem-img"
             />
           </div>
 
-          {/* Mobile Hero Typography (shown on mobile over video) */}
-          <div className="hero-mobile-text">
-            <p className="hero-eyebrow">ON MOTORS • LEBANON</p>
-            <h1 className="hero-headline">ON <em>MOTORS</em></h1>
-            <p className="hero-subtext-clean">
-              PREMIUM CARS, SUPERIOR SERVICE • SAIDA-BEIRUT HIGHWAY
-            </p>
-          </div>
+          {/* Hero Slogan */}
+          <p className="hero-subtext-clean">
+            PREMIUM CARS, SUPERIOR SERVICE • SAIDA-BEIRUT HIGHWAY
+          </p>
           <form className="hero-search" onSubmit={handleSearch}>
             <Search size={20} className="hero-search-icon" />
             <input
