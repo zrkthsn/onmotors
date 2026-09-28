@@ -1,8 +1,10 @@
 import { useMemo, useState, useEffect, useLayoutEffect } from 'react';
 import {
   ArrowRight,
+  Award,
   CalendarDays,
   CheckCircle,
+  CheckCircle2,
   ChevronDown,
   ChevronLeft,
   Clock,
@@ -10,6 +12,7 @@ import {
   Fuel,
   Gauge,
   Grid2X2,
+  Headphones,
   Instagram,
   List,
   MapPin,
@@ -47,7 +50,7 @@ const DEFAULT_FILTERS: FilterState = {
   years: [],
   fuels: [],
   transmissions: [],
-  minYear: 2020,
+  minYear: 2017,
   maxYear: 2026,
   minPrice: 0,
   maxPrice: 300000,
@@ -71,28 +74,28 @@ type Car = {
   description: string;
 };
 
-// Clean inventory array ready for new ON MOTORS vehicles
+// Exact 5 inventory models provided for ON MOTORS
 const cars: Car[] = [
   {
     id: 1,
-    name: 'Audi Q8 S-Line 2020',
-    make: 'Audi',
-    model: 'Q8 S-Line',
-    year: 2020,
+    name: 'Mercedes-Benz GLC 300 Coupe 4MATIC 2018',
+    make: 'Mercedes-Benz',
+    model: 'GLC 300 Coupe',
+    year: 2018,
     price: 'Price on Request',
-    mileage: '26,553 mi (42,700 km)',
+    mileage: 'Certified Pre-Owned',
     fuel: 'Petrol',
     transmission: 'Automatic',
-    image: '/inventory/audi-q8-sline-2020/q8-1.jpg',
+    image: '/inventory/mercedes-glc-coupe/1.jpg',
     images: [
-      '/inventory/audi-q8-sline-2020/q8-1.jpg',
-      '/inventory/audi-q8-sline-2020/q8-2.jpg',
-      '/inventory/audi-q8-sline-2020/q8-3.jpg',
-      '/inventory/audi-q8-sline-2020/q8-4.jpg',
-      '/inventory/audi-q8-sline-2020/q8-5.jpg',
+      '/inventory/mercedes-glc-coupe/1.jpg',
+      '/inventory/mercedes-glc-coupe/2.jpg',
+      '/inventory/mercedes-glc-coupe/3.jpg',
+      '/inventory/mercedes-glc-coupe/4.jpg',
+      '/inventory/mercedes-glc-coupe/5.jpg',
     ],
-    tag: '2020 • S-LINE • QUATTRO AWD • 26K MILES',
-    description: "2020 Audi Q8 S-Line • Finished in Glacier White with black optics package and sport alloy wheels. Powered by Audi's turbocharged V6 with legendary Quattro all-wheel drive. Features dual MMI touch response screens, full digital virtual cockpit, heated sport seats, panoramic glass roof, dynamic Matrix LED lighting, and ON MOTORS showroom certification."
+    tag: '2018 • GLC 300 COUPE • 4MATIC AWD • TWO-TONE RED/BLACK',
+    description: '2018 Mercedes-Benz GLC 300 Coupe 4MATIC • Finished in Polar White with diamond radiator grille and 20-inch multi-spoke AMG alloy wheels. Powered by a 2.0L turbocharged engine paired with 9G-TRONIC transmission and 4MATIC all-wheel drive. Features exclusive two-tone Cranberry Red and Black leather sport interior, open-pore dark wood trim, Burmester surround sound, electric glass sunroof, running boards, and full ON MOTORS showroom certification.',
   },
   {
     id: 2,
@@ -104,16 +107,16 @@ const cars: Car[] = [
     mileage: 'Certified Pre-Owned',
     fuel: 'Petrol',
     transmission: 'Automatic',
-    image: '/inventory/mercedes-g63-amg-2021/g63-1.jpg',
+    image: '/inventory/mercedes-g63-amg/1.jpg',
     images: [
-      '/inventory/mercedes-g63-amg-2021/g63-1.jpg',
-      '/inventory/mercedes-g63-amg-2021/g63-2.jpg',
-      '/inventory/mercedes-g63-amg-2021/g63-3.jpg',
-      '/inventory/mercedes-g63-amg-2021/g63-4.jpg',
-      '/inventory/mercedes-g63-amg-2021/g63-5.jpg',
+      '/inventory/mercedes-g63-amg/1.jpg',
+      '/inventory/mercedes-g63-amg/2.jpg',
+      '/inventory/mercedes-g63-amg/3.jpg',
+      '/inventory/mercedes-g63-amg/4.jpg',
+      '/inventory/mercedes-g63-amg/5.jpg',
     ],
     tag: '2021 • G 63 AMG • 4.0L V8 BITURBO • NIGHT PACKAGE',
-    description: "2021 Mercedes-AMG G 63 • Finished in Obsidian Black Metallic with AMG Night Package styling, 22-inch forged cross-spoke wheels, and Panamericana grille. Powered by a handcrafted 4.0L V8 Biturbo producing 577 hp. Features AMG carbon-fiber performance steering wheel, wide dual digital widescreen cockpit, Burmester surround sound, ambient lighting, side-exit sport exhaust, and full ON MOTORS showroom certification."
+    description: '2021 Mercedes-AMG G 63 • Finished in Obsidian Black Metallic with AMG Night Package styling, 22-inch forged cross-spoke wheels, and Panamericana grille. Powered by a handcrafted 4.0L V8 Biturbo producing 577 hp. Features AMG performance steering wheel, wide digital cockpit, Burmester surround sound, ambient lighting, side-exit sport exhaust, and full ON MOTORS showroom certification.',
   },
   {
     id: 3,
@@ -125,38 +128,80 @@ const cars: Car[] = [
     mileage: 'Brand New (0 km)',
     fuel: 'Plug-in Hybrid',
     transmission: 'Automatic',
-    image: '/inventory/volvo-xc60-t8-2026/xc60-1.jpg',
+    image: '/inventory/volvo-xc60-t8/1.jpg',
     images: [
-      '/inventory/volvo-xc60-t8-2026/xc60-1.jpg',
-      '/inventory/volvo-xc60-t8-2026/xc60-2.jpg',
-      '/inventory/volvo-xc60-t8-2026/xc60-3.jpg',
-      '/inventory/volvo-xc60-t8-2026/xc60-4.jpg',
-      '/inventory/volvo-xc60-t8-2026/xc60-5.jpg',
+      '/inventory/volvo-xc60-t8/1.jpg',
+      '/inventory/volvo-xc60-t8/2.jpg',
+      '/inventory/volvo-xc60-t8/3.jpg',
+      '/inventory/volvo-xc60-t8/4.jpg',
+      '/inventory/volvo-xc60-t8/5.jpg',
     ],
     tag: '2026 • T8 RECHARGE • PLUG-IN HYBRID • BLACK EDITION',
-    description: "2026 Volvo XC60 T8 Recharge • Black Edition with Onyx Black exterior, high-gloss black badging, and 21-inch gloss black sport wheels. Powered by Volvo's advanced T8 plug-in hybrid eAWD powertrain combining petrol turbo with electric power. Features Orrefors crystal gear selector, Bowers & Wilkins premium sound system, Google built-in infotainment, tailored sport leather seats, and ON MOTORS showroom delivery."
+    description: "2026 Volvo XC60 T8 Recharge • Black Edition with Onyx Black exterior, high-gloss black badging, and 21-inch gloss black sport wheels. Powered by Volvo's advanced T8 plug-in hybrid eAWD powertrain combining petrol turbo with electric power. Features Orrefors crystal gear selector, Bowers & Wilkins premium sound system, Google built-in infotainment, tailored sport leather seats, and ON MOTORS showroom delivery.",
   },
   {
     id: 4,
-    name: 'Mercedes-Benz GLC 300 Coupe 4MATIC 2018',
+    name: 'Range Rover Vogue 2020',
+    make: 'Land Rover',
+    model: 'Range Rover Vogue',
+    year: 2020,
+    price: 'Price on Request',
+    mileage: 'Certified Pre-Owned',
+    fuel: 'Petrol',
+    transmission: 'Automatic',
+    image: '/inventory/range-rover-vogue/1.jpg',
+    images: [
+      '/inventory/range-rover-vogue/1.jpg',
+      '/inventory/range-rover-vogue/2.jpg',
+      '/inventory/range-rover-vogue/3.jpg',
+      '/inventory/range-rover-vogue/4.jpg',
+      '/inventory/range-rover-vogue/5.jpg',
+    ],
+    tag: '2020 • RANGE ROVER VOGUE • AUTOBIOGRAPHY • AIR SUSPENSION',
+    description: '2020 Range Rover Vogue Autobiography • Finished in Santorini Black with signature Atlas exterior accents and 21-inch diamond-turned alloy wheels. Powered by refined luxury powertrain with electronic air suspension and Terrain Response 2. Features Touch Pro Duo dual screens, soft-close doors, Meridian surround sound, panoramic glass roof, and full ON MOTORS showroom certification.',
+  },
+  {
+    id: 5,
+    name: 'Cadillac Escalade Premium Luxury 2017',
+    make: 'Cadillac',
+    model: 'Escalade Premium Luxury',
+    year: 2017,
+    price: 'Price on Request',
+    mileage: 'Certified Pre-Owned',
+    fuel: 'Petrol',
+    transmission: 'Automatic',
+    image: '/inventory/cadillac-escalade/1.jpg',
+    images: [
+      '/inventory/cadillac-escalade/1.jpg',
+      '/inventory/cadillac-escalade/2.jpg',
+      '/inventory/cadillac-escalade/3.jpg',
+      '/inventory/cadillac-escalade/4.jpg',
+      '/inventory/cadillac-escalade/5.jpg',
+    ],
+    tag: '2017 • ESCALADE PREMIUM LUXURY • 6.2L V8 • 4WD',
+    description: '2017 Cadillac Escalade Premium Luxury • Finished in Onyx Black with chrome styling package and 22-inch premium alloy wheels. Powered by a 6.2L V8 engine with Magnetic Ride Control suspension and 4WD. Features rear-seat Blu-Ray entertainment system, head-up display, 16-speaker Bose Centerpoint surround audio, power-retractable running boards, 360 surround vision, heated/ventilated front seats, and full ON MOTORS showroom certification.',
+  },
+  {
+    id: 6,
+    name: 'Mercedes-Benz E 450 Coupe 2018',
     make: 'Mercedes-Benz',
-    model: 'GLC 300 Coupe',
+    model: 'E 450 Coupe',
     year: 2018,
     price: 'Price on Request',
     mileage: 'Certified Pre-Owned',
     fuel: 'Petrol',
     transmission: 'Automatic',
-    image: '/inventory/mercedes-glc-coupe-2018/glc-1.jpg',
+    image: '/inventory/mercedes-e450-coupe/1.jpg',
     images: [
-      '/inventory/mercedes-glc-coupe-2018/glc-1.jpg',
-      '/inventory/mercedes-glc-coupe-2018/glc-2.jpg',
-      '/inventory/mercedes-glc-coupe-2018/glc-3.jpg',
-      '/inventory/mercedes-glc-coupe-2018/glc-4.jpg',
-      '/inventory/mercedes-glc-coupe-2018/glc-5.jpg',
+      '/inventory/mercedes-e450-coupe/1.jpg',
+      '/inventory/mercedes-e450-coupe/2.jpg',
+      '/inventory/mercedes-e450-coupe/3.jpg',
+      '/inventory/mercedes-e450-coupe/4.jpg',
+      '/inventory/mercedes-e450-coupe/5.jpg',
     ],
-    tag: '2018 • GLC 300 COUPE • 4MATIC AWD • TWO-TONE RED/BLACK',
-    description: "2018 Mercedes-Benz GLC 300 Coupe 4MATIC • Finished in Polar White with diamond radiator grille and 20-inch multi-spoke AMG alloy wheels. Powered by a 2.0L turbocharged engine paired with 9G-TRONIC transmission and 4MATIC all-wheel drive. Features exclusive two-tone Cranberry Red and Black leather sport interior, open-pore dark wood trim, Burmester surround sound, electric glass sunroof, running boards, and full ON MOTORS showroom certification."
-  }
+    tag: '2018 • E 450 • 3.0L V6 BITURBO • AMG STYLING • TWO-TONE INTERIOR',
+    description: '2018 Mercedes-Benz E 450 AMG Coupe / Cabriolet • Finished in striking Matte Satin Riviera Blue with Panamericana gloss black grille, black AMG multi-spoke wheels, and quad exhaust diffuser. Features bespoke two-tone Yachting Blue & Cream Nappa leather interior with embossed AMG emblems, two-tone leather multi-function steering wheel, dual 12.3-inch widescreen digital cockpit, AIRSCARF neck-level heating, dynamic driving modes, and full ON MOTORS showroom certification.',
+  },
 ];
 
 const ALL_MAKES = Array.from(new Set(cars.map((c) => c.make))).filter(Boolean);
@@ -445,7 +490,6 @@ function HomePage({
   onSearch: (query: string) => void;
 }) {
   const [q, setQ] = useState('');
-  const [isVideoMuted, setIsVideoMuted] = useState(true);
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (q.trim()) {
@@ -462,28 +506,6 @@ function HomePage({
     <div className="home-page-container">
       {/* Hero Section */}
       <section className="hero-section dark-emblem-hero">
-        {/* Mobile Background Video (specifically fits whole hero on mobile) */}
-        <div className="hero-mobile-video-bg">
-          <video
-            className="hero-video-element"
-            autoPlay
-            muted={isVideoMuted}
-            loop
-            playsInline
-            src="/c300-coupe/c300video.mp4"
-          />
-          <div className="hero-video-gradient-overlay" />
-          <button
-            type="button"
-            className="hero-video-sound-toggle"
-            onClick={() => setIsVideoMuted(!isVideoMuted)}
-            aria-label={isVideoMuted ? 'Unmute video' : 'Mute video'}
-            title={isVideoMuted ? 'Unmute video' : 'Mute video'}
-          >
-            {isVideoMuted ? <VolumeX size={15} /> : <Volume2 size={15} />}
-          </button>
-        </div>
-
         <div className="hero-content">
           {/* Hero Emblem Graphic */}
           <div className="hero-desktop-emblem">
@@ -526,24 +548,44 @@ function HomePage({
       {/* Stats Bar */}
       <section className="home-stats-bar">
         <div className="home-stats-inner">
-          <div className="stat-item">
-            <span className="stat-number">PREMIER</span>
-            <span className="stat-label">LUXURY COLLECTION</span>
+          <div className="stat-card">
+            <div className="stat-icon-wrap">
+              <Award size={20} />
+            </div>
+            <div className="stat-content">
+              <span className="stat-number">PREMIER</span>
+              <span className="stat-label">LUXURY COLLECTION</span>
+            </div>
           </div>
           <div className="stat-divider" />
-          <div className="stat-item">
-            <span className="stat-number">150-POINT</span>
-            <span className="stat-label">INSPECTION STANDARD</span>
+          <div className="stat-card">
+            <div className="stat-icon-wrap">
+              <ShieldCheck size={20} />
+            </div>
+            <div className="stat-content">
+              <span className="stat-number">150-POINT</span>
+              <span className="stat-label">INSPECTION STANDARD</span>
+            </div>
           </div>
           <div className="stat-divider" />
-          <div className="stat-item">
-            <span className="stat-number">100%</span>
-            <span className="stat-label">AUTHENTIC PROVENANCE</span>
+          <div className="stat-card">
+            <div className="stat-icon-wrap">
+              <CheckCircle2 size={20} />
+            </div>
+            <div className="stat-content">
+              <span className="stat-number">100%</span>
+              <span className="stat-label">AUTHENTIC PROVENANCE</span>
+            </div>
           </div>
           <div className="stat-divider" />
-          <div className="stat-item">
-            <span className="stat-number">24/7</span>
-            <span className="stat-label">VIP CONCIERGE CARE</span>
+          <div className="stat-card">
+            <div className="stat-icon-wrap">
+              <Headphones size={20} />
+            </div>
+            <div className="stat-content">
+              <span className="stat-number">24/7</span>
+              <span className="stat-label">VIP CONCIERGE CARE</span>
+            </div>
           </div>
         </div>
       </section>
@@ -698,15 +740,18 @@ function HomePage({
       {/* Dark Call-To-Action Banner */}
       <section className="home-bottom-cta">
         <div className="bottom-cta-inner">
-          <p className="hero-eyebrow">READY TO DRIVE SOMETHING REMARKABLE?</p>
-          <h2>Visit Our Showroom or Request a Personal Tour.</h2>
-          <p>Our specialists are available for private appointments, test drives, and custom vehicle sourcing.</p>
+          <div className="cta-badge">
+            <Sparkles size={14} />
+            <span>READY TO DRIVE SOMETHING REMARKABLE?</span>
+          </div>
+          <h2>Visit Our Showroom or Request a Private Consultation</h2>
+          <p>Our specialists are available for private showroom viewings, test drives, vehicle trades, and custom sourcing across Lebanon.</p>
           <div className="bottom-cta-buttons">
-            <button className="primary-button-white" onClick={() => onNavigate('inventory')}>
-              EXPLORE FULL INVENTORY
+            <button className="primary-button-gold" onClick={() => onNavigate('inventory')}>
+              EXPLORE FULL INVENTORY <ArrowRight size={14} />
             </button>
-            <button className="outline-button-white" onClick={() => onNavigate('contact')}>
-              CONTACT CONCIERGE
+            <button className="outline-button-glass" onClick={() => onNavigate('contact')}>
+              <MessageSquare size={14} /> CONTACT CONCIERGE
             </button>
           </div>
         </div>
@@ -1577,8 +1622,10 @@ function ContactPage() {
             <div className="contact-card-details">
               <a href="tel:+96176070017" className="contact-link-bold">+961 76 070 017</a>
               <span className="contact-link-sub">Showroom Primary Hotline</span>
-              <a href="tel:+96171450774" className="contact-link-bold" style={{ marginTop: '6px' }}>+961 71 450 774</a>
+              <a href="tel:+96170602328" className="contact-link-bold" style={{ marginTop: '6px' }}>+961 70 602 328</a>
               <span className="contact-link-sub">Showroom Secondary Hotline</span>
+              <a href="tel:+96171450774" className="contact-link-bold" style={{ marginTop: '6px' }}>+961 71 450 774</a>
+              <span className="contact-link-sub">Direct Sales & Inquiries</span>
             </div>
             <a href="tel:+96176070017" className="contact-card-action">CALL US NOW <ArrowRight size={14} /></a>
           </div>
@@ -1721,7 +1768,7 @@ function ContactPage() {
                 <MapPin size={20} className="info-icon" />
                 <div>
                   <span className="info-label">SHOWROOM ADDRESS</span>
-                  <span className="info-val">Saida - Beirut Highway<br />Saida, Lebanon</span>
+                  <span className="info-val">ON Motors, Saida - Beirut Highway<br />Saida, Lebanon</span>
                 </div>
               </div>
               <div className="info-item">
@@ -1733,11 +1780,11 @@ function ContactPage() {
               </div>
             </div>
 
-            {/* Google Map iFrame */}
+            {/* Google Map iFrame with exact ON Motors location */}
             <div className="google-map-wrapper">
               <iframe
                 title="ON Motors Showroom Location"
-                src="https://maps.google.com/maps?q=Saida-Beirut+Highway,+Lebanon&t=&z=14&ie=UTF8&iwloc=&output=embed"
+                src="https://maps.google.com/maps?q=33.5822897,35.3870122&hl=en&z=17&output=embed"
                 width="100%"
                 height="320"
                 style={{ border: 0 }}
@@ -1746,20 +1793,25 @@ function ContactPage() {
                 referrerPolicy="no-referrer-when-downgrade"
               />
             </div>
-            <div style={{ marginTop: '14px', textAlign: 'center' }}>
+            <div style={{ marginTop: '16px', textAlign: 'center' }}>
               <a
-                href="https://www.google.com/maps/search/?api=1&query=Saida+Beirut+Highway+Lebanon"
+                href="https://maps.app.goo.gl/S37p39fCy6NdcbTj7"
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
-                  gap: '6px',
-                  color: '#111',
+                  gap: '8px',
+                  color: '#F3DC9B',
+                  background: 'rgba(212, 175, 55, 0.1)',
+                  border: '1px solid rgba(212, 175, 55, 0.4)',
+                  padding: '10px 20px',
+                  borderRadius: '4px',
                   fontWeight: 700,
-                  fontSize: '12px',
-                  letterSpacing: '0.05em',
-                  textDecoration: 'none'
+                  fontSize: '11px',
+                  letterSpacing: '0.08em',
+                  textDecoration: 'none',
+                  transition: 'all 0.25s ease'
                 }}
               >
                 <MapPin size={14} /> VIEW ON GOOGLE MAPS <ArrowRight size={12} />
@@ -1847,20 +1899,29 @@ function App() {
       )}
 
       <footer className="site-footer">
-        <Logo onNavigate={navigate} />
-        <div>
-          <button onClick={() => navigate('inventory')}>INVENTORY</button>
-          <button onClick={() => navigate('about')}>ABOUT</button>
-          <button onClick={() => navigate('journal')}>JOURNAL</button>
-          <button onClick={() => navigate('contact')}>CONTACT US</button>
-          <a href="https://www.instagram.com/onmotors1/" target="_blank" rel="noreferrer" style={{ color: 'inherit', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '4px', fontSize: '11px', fontWeight: 600 }}>
-            <Instagram size={14} /> @onmotors1
-          </a>
-          <a href="https://www.facebook.com/search/top?q=On%20Motors%20Saida" target="_blank" rel="noreferrer" style={{ color: 'inherit', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '4px', fontSize: '11px', fontWeight: 600 }}>
-            <Facebook size={14} /> Facebook
-          </a>
+        <div className="site-footer-top">
+          <div className="site-footer-brand">
+            <Logo onNavigate={navigate} />
+          </div>
+          <div className="site-footer-nav">
+            <button onClick={() => navigate('inventory')}>INVENTORY</button>
+            <button onClick={() => navigate('about')}>ABOUT</button>
+            <button onClick={() => navigate('journal')}>JOURNAL</button>
+            <button onClick={() => navigate('contact')}>CONTACT US</button>
+            <a href="https://maps.app.goo.gl/S37p39fCy6NdcbTj7" target="_blank" rel="noreferrer" className="footer-link">
+              <MapPin size={14} /> Location
+            </a>
+            <a href="https://www.instagram.com/onmotors1/" target="_blank" rel="noreferrer" className="footer-link">
+              <Instagram size={14} /> @onmotors1
+            </a>
+            <a href="https://www.facebook.com/search/top?q=On%20Motors%20Saida" target="_blank" rel="noreferrer" className="footer-link">
+              <Facebook size={14} /> Facebook
+            </a>
+          </div>
         </div>
-        <span>© 2025 ON Motors. All rights reserved. Saida-Beirut Highway, Lebanon.</span>
+        <div className="site-footer-bottom">
+          <p>© 2025 ON Motors. All rights reserved. • Saida-Beirut Highway, Lebanon</p>
+        </div>
       </footer>
     </div>
   );
