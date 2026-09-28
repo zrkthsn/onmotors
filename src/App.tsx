@@ -114,6 +114,27 @@ const cars: Car[] = [
     ],
     tag: '2021 • G 63 AMG • 4.0L V8 BITURBO • NIGHT PACKAGE',
     description: "2021 Mercedes-AMG G 63 • Finished in Obsidian Black Metallic with AMG Night Package styling, 22-inch forged cross-spoke wheels, and Panamericana grille. Powered by a handcrafted 4.0L V8 Biturbo producing 577 hp. Features AMG carbon-fiber performance steering wheel, wide dual digital widescreen cockpit, Burmester surround sound, ambient lighting, side-exit sport exhaust, and full ON MOTORS showroom certification."
+  },
+  {
+    id: 3,
+    name: 'Volvo XC60 T8 Recharge 2026',
+    make: 'Volvo',
+    model: 'XC60 T8 Recharge',
+    year: 2026,
+    price: 'Price on Request',
+    mileage: 'Brand New (0 km)',
+    fuel: 'Plug-in Hybrid',
+    transmission: 'Automatic',
+    image: '/inventory/volvo-xc60-t8-2026/xc60-1.jpg',
+    images: [
+      '/inventory/volvo-xc60-t8-2026/xc60-1.jpg',
+      '/inventory/volvo-xc60-t8-2026/xc60-2.jpg',
+      '/inventory/volvo-xc60-t8-2026/xc60-3.jpg',
+      '/inventory/volvo-xc60-t8-2026/xc60-4.jpg',
+      '/inventory/volvo-xc60-t8-2026/xc60-5.jpg',
+    ],
+    tag: '2026 • T8 RECHARGE • PLUG-IN HYBRID • BLACK EDITION',
+    description: "2026 Volvo XC60 T8 Recharge • Black Edition with Onyx Black exterior, high-gloss black badging, and 21-inch gloss black sport wheels. Powered by Volvo's advanced T8 plug-in hybrid eAWD powertrain combining petrol turbo with electric power. Features Orrefors crystal gear selector, Bowers & Wilkins premium sound system, Google built-in infotainment, tailored sport leather seats, and ON MOTORS showroom delivery."
   }
 ];
 
