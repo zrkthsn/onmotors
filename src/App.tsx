@@ -53,28 +53,6 @@ const DEFAULT_FILTERS: FilterState = {
   maxPrice: 300000,
 };
 
-const ALL_MAKES = [
-  'Mercedes-Benz',
-  'Audi',
-  'Volvo',
-];
-
-const MAKE_MODELS_MAP: Record<string, string[]> = {
-  'Mercedes-Benz': ['G 63 AMG'],
-  'Audi': ['Q8 S-Line'],
-  'Volvo': ['XC60 T8 Recharge'],
-};
-
-const ALL_MODELS = [
-  'G 63 AMG',
-  'Q8 S-Line',
-  'XC60 T8 Recharge',
-];
-
-const ALL_YEARS = [2026, 2021, 2020];
-const ALL_FUELS = ['Petrol', 'Hybrid'];
-const ALL_TRANSMISSIONS = ['Automatic'];
-
 type Page = 'home' | 'inventory' | 'about' | 'journal' | 'car' | 'contact';
 
 type Car = {
@@ -93,67 +71,19 @@ type Car = {
   description: string;
 };
 
-const cars: Car[] = [
-  {
-    id: 1,
-    name: 'Mercedes-Benz G 63 AMG 2021',
-    make: 'Mercedes-Benz',
-    model: 'G 63 AMG',
-    year: 2021,
-    price: 'Price on Request',
-    mileage: 'Certified Pre-Owned',
-    fuel: 'Petrol',
-    transmission: 'Automatic',
-    image: '/inventory/mercedes-g63-amg-2021/g63-1.jpg',
-    images: [
-      '/inventory/mercedes-g63-amg-2021/g63-1.jpg',
-      '/inventory/mercedes-g63-amg-2021/g63-2.jpg',
-      '/inventory/mercedes-g63-amg-2021/g63-3.jpg',
-      '/inventory/mercedes-g63-amg-2021/g63-4.jpg',
-      '/inventory/mercedes-g63-amg-2021/g63-5.jpg'
-    ],
-    tag: 'G63 AMG 2021 • V8 BITURBO • ON MOTORS EXCLUSIVE',
-    description: '2021 Mercedes-AMG G 63 • Handcrafted 4.0L V8 Biturbo, AMG Night Package styling, exclusive diamond-stitched Nappa leather interior, Burmester Surround Sound system, AMG Ride Control suspension. Inspected, certified and ready for immediate delivery at ON Motors Saida.'
-  },
-  {
-    id: 2,
-    name: 'Audi Q8 S-Line 2020',
-    make: 'Audi',
-    model: 'Q8 S-Line',
-    year: 2020,
-    price: 'Price on Request',
-    mileage: 'Certified Pre-Owned',
-    fuel: 'Petrol',
-    transmission: 'Automatic',
-    image: '/inventory/audi-q8-sline-2020/q8-1.jpg',
-    images: [
-      '/inventory/audi-q8-sline-2020/q8-1.jpg',
-      '/inventory/audi-q8-sline-2020/q8-2.jpg',
-      '/inventory/audi-q8-sline-2020/q8-3.jpg'
-    ],
-    tag: 'Q8 S-LINE 2020 • QUATTRO AWD • LUXURY SPORT SUV',
-    description: '2020 Audi Q8 S-Line • Legendary Quattro all-wheel drive, dual touchscreen MMI touch response, Valcona leather sport seats, panoramic glass roof, dynamic Matrix LED lighting, full digital virtual cockpit. Certified inspection and warranty included.'
-  },
-  {
-    id: 3,
-    name: 'Volvo XC60 T8 Recharge 2026',
-    make: 'Volvo',
-    model: 'XC60 T8 Recharge',
-    year: 2026,
-    price: 'Price on Request',
-    mileage: 'Brand New (0 km)',
-    fuel: 'Hybrid',
-    transmission: 'Automatic',
-    image: '/inventory/volvo-xc60-t8-2026/xc60-1.jpg',
-    images: [
-      '/inventory/volvo-xc60-t8-2026/xc60-1.jpg',
-      '/inventory/volvo-xc60-t8-2026/xc60-2.jpg',
-      '/inventory/volvo-xc60-t8-2026/xc60-3.jpg'
-    ],
-    tag: 'XC60 T8 2026 • PLUG-IN HYBRID • BRAND NEW 0 KM',
-    description: '2026 Volvo XC60 T8 Recharge • High performance plug-in hybrid eAWD powertrain, Scandinavian minimalist luxury interior with genuine driftwood trim and Orrefors crystal gear shifter, Google built-in ecosystem, 360-degree surround view camera, brand new showroom delivery.'
-  }
-];
+// Clean inventory array ready for new ON MOTORS vehicles
+const cars: Car[] = [];
+
+const ALL_MAKES = Array.from(new Set(cars.map((c) => c.make))).filter(Boolean);
+const MAKE_MODELS_MAP: Record<string, string[]> = cars.reduce((acc, c) => {
+  if (!acc[c.make]) acc[c.make] = [];
+  if (!acc[c.make].includes(c.model)) acc[c.make].push(c.model);
+  return acc;
+}, {} as Record<string, string[]>);
+const ALL_MODELS = Array.from(new Set(cars.map((c) => c.model))).filter(Boolean);
+const ALL_YEARS = Array.from(new Set(cars.map((c) => c.year))).sort((a, b) => b - a);
+const ALL_FUELS = Array.from(new Set(cars.map((c) => c.fuel))).filter(Boolean);
+const ALL_TRANSMISSIONS = Array.from(new Set(cars.map((c) => c.transmission))).filter(Boolean);
 
 const onJournalPosts = [
   { category: 'News', title: 'The arrival of the 2024 collection', date: 'August 18, 2024', image: 'https://images.pexels.com/photos/14217531/pexels-photo-14217531.jpeg?auto=compress&cs=tinysrgb&h=650&w=940' },
@@ -600,39 +530,27 @@ function HomePage({
         )}
       </section>
 
-      {/* Category Spotlight Grid */}
-      <section className="home-categories-section">
-        <div className="home-section-header">
-          <p className="home-section-eyebrow">EXPLORE BY CATEGORY</p>
-          <h2 className="home-section-title">Browse Collections</h2>
-        </div>
-        <div className="category-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))' }}>
-          <div className="category-card" onClick={() => onNavigate('inventory')}>
-            <img src="/inventory/mercedes-g63-amg-2021/g63-1.jpg" alt="Mercedes-AMG G 63" loading="lazy" decoding="async" />
-            <div className="category-overlay">
-              <h3>MERCEDES-AMG G 63</h3>
-              <p>2021 V8 Biturbo • ON Motors Exclusive</p>
-              <span className="category-cta">VIEW G 63 AMG <ArrowRight size={13} /></span>
-            </div>
+      {/* Category Spotlight Grid (shown dynamically when inventory exists) */}
+      {cars.length > 0 && (
+        <section className="home-categories-section">
+          <div className="home-section-header">
+            <p className="home-section-eyebrow">EXPLORE BY CATEGORY</p>
+            <h2 className="home-section-title">Browse Collections</h2>
           </div>
-          <div className="category-card" onClick={() => onNavigate('inventory')}>
-            <img src="/inventory/audi-q8-sline-2020/q8-1.jpg" alt="Audi Q8 S-Line" loading="lazy" decoding="async" />
-            <div className="category-overlay">
-              <h3>AUDI Q8 S-LINE</h3>
-              <p>2020 Quattro AWD • Luxury Sport SUV</p>
-              <span className="category-cta">VIEW AUDI Q8 <ArrowRight size={13} /></span>
-            </div>
+          <div className="category-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))' }}>
+            {cars.map((car) => (
+              <div key={car.id} className="category-card" onClick={() => onSelectCar(car.id)}>
+                <img src={car.image} alt={car.name} loading="lazy" decoding="async" />
+                <div className="category-overlay">
+                  <h3>{car.name}</h3>
+                  <p>{car.tag || `${car.year} • ${car.fuel}`}</p>
+                  <span className="category-cta">VIEW DETAILS <ArrowRight size={13} /></span>
+                </div>
+              </div>
+            ))}
           </div>
-          <div className="category-card" onClick={() => onNavigate('inventory')}>
-            <img src="/inventory/volvo-xc60-t8-2026/xc60-1.jpg" alt="Volvo XC60 T8 Recharge" loading="lazy" decoding="async" />
-            <div className="category-overlay">
-              <h3>VOLVO XC60 T8</h3>
-              <p>2026 Plug-in Hybrid • Brand New 0 km</p>
-              <span className="category-cta">VIEW VOLVO XC60 <ArrowRight size={13} /></span>
-            </div>
-          </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* Why Choose Us */}
       <section className="home-why-section">
