@@ -72,7 +72,29 @@ type Car = {
 };
 
 // Clean inventory array ready for new ON MOTORS vehicles
-const cars: Car[] = [];
+const cars: Car[] = [
+  {
+    id: 1,
+    name: 'Audi Q8 S-Line 2020',
+    make: 'Audi',
+    model: 'Q8 S-Line',
+    year: 2020,
+    price: 'Price on Request',
+    mileage: '26,553 mi (42,700 km)',
+    fuel: 'Petrol',
+    transmission: 'Automatic',
+    image: '/inventory/audi-q8-sline-2020/q8-1.jpg',
+    images: [
+      '/inventory/audi-q8-sline-2020/q8-1.jpg',
+      '/inventory/audi-q8-sline-2020/q8-2.jpg',
+      '/inventory/audi-q8-sline-2020/q8-3.jpg',
+      '/inventory/audi-q8-sline-2020/q8-4.jpg',
+      '/inventory/audi-q8-sline-2020/q8-5.jpg',
+    ],
+    tag: '2020 • S-LINE • QUATTRO AWD • 26K MILES',
+    description: "2020 Audi Q8 S-Line • Finished in Glacier White with black optics package and sport alloy wheels. Powered by Audi's turbocharged V6 with legendary Quattro all-wheel drive. Features dual MMI touch response screens, full digital virtual cockpit, heated sport seats, panoramic glass roof, dynamic Matrix LED lighting, and ON MOTORS showroom certification."
+  }
+];
 
 const ALL_MAKES = Array.from(new Set(cars.map((c) => c.make))).filter(Boolean);
 const MAKE_MODELS_MAP: Record<string, string[]> = cars.reduce((acc, c) => {
